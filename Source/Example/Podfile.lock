@@ -1,0 +1,28 @@
+PODS:
+  - Alamofire (5.4.3)
+  - incetro-http-transport (5.1.1):
+    - Alamofire (~> 5)
+
+DEPENDENCIES:
+  - incetro-http-transport (from `https://github.com/Incetro/http-transport`)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Alamofire
+
+EXTERNAL SOURCES:
+  incetro-http-transport:
+    :git: https://github.com/Incetro/http-transport
+
+CHECKOUT OPTIONS:
+  incetro-http-transport:
+    :commit: e2918592c1d4766003b8d642abb90a68f7140aad
+    :git: https://github.com/Incetro/http-transport
+
+SPEC CHECKSUMS:
+  Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
+  incetro-http-transport: 5b5c1de03b326c7a28c34f3b1e8b20942e71a6f6
+
+PODFILE CHECKSUM: 87ca1944eb8f13b1fe448066a70ee705f6821d8f
+
+COCOAPODS: 1.10.0
