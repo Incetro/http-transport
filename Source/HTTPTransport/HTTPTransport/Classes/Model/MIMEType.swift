@@ -14,7 +14,8 @@ public struct MIMEType {
 
     // MARK: - Properties
 
-    private static let defaultMIMEType: String = "application/octet-stream"
+    /// Default MIME type
+    private static let defaultMIMEType = "application/octet-stream"
 
     /// Get actual MIME type
     /// - returns: Strings like "image/png". Default value is "application/octet-stream"

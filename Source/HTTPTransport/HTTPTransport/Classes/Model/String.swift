@@ -8,7 +8,7 @@
 
 // MARK: - String
 
-extension String {
+public extension String {
 
     // MARK: - TruncationPosition
 

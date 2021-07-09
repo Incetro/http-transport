@@ -79,7 +79,7 @@ open class HTTPRequest {
                 mergedEndpoint = base.endpoint + "/" + endpoint
             }
             mergedHeaders = base.headers
-            headers.forEach { (header: String, value: String) in
+            headers.forEach { (header, value) in
                 mergedHeaders[header] = value
             }
             mergedParameters = type(of: self).merge(baseParameters: base.parameters, withParameters: parameters)
@@ -97,17 +97,27 @@ open class HTTPRequest {
     }
 
     /// Add HTTP request header
+    /// - Parameters:
+    ///   - header: request header
+    ///   - value: request value
+    /// - Returns: HTTPRequest instance
     @discardableResult open func with(header: String, value: String) -> Self {
         headers[header] = value
         return self
     }
 
     /// Add Cookie to HTTP request with Cookie name and value
+    /// - Parameters:
+    ///   - name: cookie name
+    ///   - value: cookie value
+    /// - Returns: HTTPRequest instance
     @discardableResult open func with(cookieName name: String, value: String) -> Self {
         with(cookie: HTTPCookie(name: name, value: value))
     }
 
     /// Add Cookie to HTTP request
+    /// - Parameter cookie: HTTPCookie instance
+    /// - Returns: HTTPRequest instance
     @discardableResult open func with(cookie: HTTPCookie) -> Self {
         let headers = HTTPCookie.requestHeaderFields(with: [cookie])
         for (header, value) in headers {
@@ -117,6 +127,11 @@ open class HTTPRequest {
     }
 
     /// Add request parameter
+    /// - Parameters:
+    ///   - parameter: request parameter
+    ///   - value: request value
+    ///   - encoding: encoding type
+    /// - Returns: HTTPRequest instance
     @discardableResult open func with(
         parameter: String,
         value: Any,
@@ -126,6 +141,10 @@ open class HTTPRequest {
     }
 
     /// Add request parameters
+    /// - Parameters:
+    ///   - parameters: request parameters
+    ///   - encoding: encoding type
+    /// - Returns: HTTPRequest instance
     @discardableResult open func with(
         parameters: [String: Any],
         encoding: HTTPRequestParameters.Encoding = .json
@@ -135,25 +154,33 @@ open class HTTPRequest {
     }
 
     /// Add request parameters
+    /// - Parameter parameters: request parameters
+    /// - Returns: HTTPRequest instance
     @discardableResult open func with(parameters: HTTPRequestParameters) -> Self {
         with(parameters: [parameters])
     }
 
     /// Add request parameters
+    /// - Parameter parameters: request parameters
+    /// - Returns: HTTPRequest instance
     @discardableResult open func with(parameters: [HTTPRequestParameters]) -> Self {
         self.parameters = type(of: self).merge(baseParameters: self.parameters, withParameters: parameters)
         return self
     }
 
     /// Add request interceptors
+    /// - Parameter interceptors: request interceptors
+    /// - Returns: HTTPRequest instance
     @discardableResult public func with(interceptors: [HTTPRequestInterceptor]) -> Self {
-        self.requestInterceptors += interceptors
+        requestInterceptors += interceptors
         return self
     }
 
     /// Add response interceptors
+    /// - Parameter interceptors: response interceptors
+    /// - Returns: HTTPRequest instance
     @discardableResult public func with(interceptors: [HTTPResponseInterceptor]) -> Self {
-        self.responseInterceptors += interceptors
+        responseInterceptors += interceptors
         return self
     }
 
@@ -180,8 +207,7 @@ open class HTTPRequest {
 extension HTTPRequest: URLRequestConvertible {
 
     public func asURLRequest() throws -> URLRequest {
-        guard let url = URL(string: endpoint)
-        else {
+        guard let url = URL(string: endpoint) else {
             throw NSError.cannotInitURL(urlString: endpoint)
         }
         let initialRequest = try createURLRequest(
@@ -195,7 +221,7 @@ extension HTTPRequest: URLRequestConvertible {
             currentRequest: URLRequest,
             interceptor: HTTPRequestInterceptor
         ) -> URLRequest in
-            return interceptor.intercept(request: currentRequest)
+            interceptor.intercept(request: currentRequest)
         }
     }
 }
@@ -228,7 +254,6 @@ private extension HTTPRequest {
         var jsonParameters: [String: Any] = [:]
         var urlParameters: [String: Any] = [:]
         var customParameters: [HTTPRequestParameters] = []
-        // PUT BASE PARAMETERS INTO CORRESPONDING BASKETS
         for baseParameters in baseParameters {
             switch baseParameters.encoding {
                 case HTTPRequestParameters.Encoding.json:
@@ -243,7 +268,6 @@ private extension HTTPRequest {
                     customParameters.append(baseParameters)
             }
         }
-        // OVERRIDE/APPEND BASE PARAMETERS IN BASKETS
         for parameters in parameters {
             switch parameters.encoding {
                 case HTTPRequestParameters.Encoding.json:

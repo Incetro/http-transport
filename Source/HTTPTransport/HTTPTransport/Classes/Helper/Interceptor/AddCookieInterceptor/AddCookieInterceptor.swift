@@ -29,6 +29,9 @@ open class AddCookieInterceptor {
 
 extension AddCookieInterceptor: HTTPRequestInterceptor {
 
+    /// Intercept outgoing HTTP request
+    /// - Parameter request: original request
+    /// - Returns: may return original or modified `URLRequest`
     open func intercept(request: URLRequest) -> URLRequest {
         let cookies = getCookies(fromRequest: request)
         var mutableRequest = request

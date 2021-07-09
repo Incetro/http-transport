@@ -33,7 +33,7 @@ open class DataUploadHTTPRequest: HTTPRequest {
     ///   - base: base `HTTPRequest` to inherit parameters from; default is `None`
     ///   - data: file data
     public init(
-        httpMethod: HTTPRequest.HTTPMethod = HTTPMethod.post,
+        httpMethod: HTTPRequest.HTTPMethod = .post,
         endpoint: String = "",
         headers: [String : String] = [:],
         parameters: [HTTPRequestParameters] = [],

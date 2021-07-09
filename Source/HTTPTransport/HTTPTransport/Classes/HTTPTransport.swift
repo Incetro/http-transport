@@ -101,12 +101,11 @@ open class HTTPTransport {
     /// - Parameter request: an HTTP request with HTTP verb, URL, headers, body etc.
     /// - Returns: either `.success` with HTTP response or `.failure` with error object
     open func send(request: HTTPRequest) -> Result {
-        guard !Thread.isMainThread || allowNetworkingOnMainThread
-        else {
+        guard !Thread.isMainThread || allowNetworkingOnMainThread else {
             preconditionFailure("Networking on the main thread")
         }
         let session = request.session ?? session
-        let alamofireSession: Alamofire.Session = session.manager
+        let alamofireSession = session.manager
         var result = Result.timeout
         let semaphore = DispatchSemaphore(value: 0)
         request.with(interceptors: requestInterceptors)
@@ -114,7 +113,7 @@ open class HTTPTransport {
             .request(request)
             .responseHTTP(
                 interceptors: request.responseInterceptors + responseInterceptors
-            ) { (response: ResultResponse) in
+            ) { response in
                 result = self.composeResult(fromResponse: response)
                 semaphore.signal()
             }
@@ -130,11 +129,10 @@ open class HTTPTransport {
     /// - Parameter request: an `URLRequest` instance
     /// - Returns: either `.success` with HTTP response or `.failure` with error object
     open func send(request: URLRequest) -> Result {
-        guard !Thread.isMainThread || allowNetworkingOnMainThread
-        else {
+        guard !Thread.isMainThread || allowNetworkingOnMainThread else {
             preconditionFailure("Networking on the main thread")
         }
-        let alamofireSession: Alamofire.Session = session.manager
+        let alamofireSession = session.manager
         var result = Result.timeout
         let semaphore = DispatchSemaphore(value: 0)
         let interceptedRequest = requestInterceptors.reduce(request) { (
@@ -145,7 +143,7 @@ open class HTTPTransport {
         }
         let dataRequest = alamofireSession
             .request(interceptedRequest)
-            .responseHTTP(interceptors: responseInterceptors) { (response: ResultResponse) in
+            .responseHTTP(interceptors: responseInterceptors) { response in
                 result = self.composeResult(fromResponse: response)
                 semaphore.signal()
             }
@@ -161,27 +159,26 @@ open class HTTPTransport {
     /// - Parameter request: an HTTP request with HTTP verb, URL, headers, file data etc.
     /// - Returns: either `.success` with HTTP response or `.failure` with error object
     open func send(request: FileUploadHTTPRequest) -> Result {
-        guard !Thread.isMainThread || allowNetworkingOnMainThread
-        else {
+        guard !Thread.isMainThread || allowNetworkingOnMainThread else {
             preconditionFailure("Networking on the main thread")
         }
         let session = request.session ?? session
-        let alamofireSession: Alamofire.Session = session.manager
+        let alamofireSession = session.manager
         var result = Result.timeout
         let semaphore = DispatchSemaphore(value: 0)
         request.with(interceptors: requestInterceptors)
         let uploadResult = alamofireSession.upload(
-            multipartFormData: { (formData: MultipartFormData) in
+            multipartFormData: { formData in
                 formData.append(
                     request.fileMultipart.fileData,
                     withName: request.fileMultipart.partName,
                     fileName: request.fileMultipart.fileName,
                     mimeType: request.fileMultipart.mimeType.value
                 )
-                request.parameters.forEach{
+                request.parameters.forEach {
                     for (key, value) in $0.parameters {
                         if let value = value as? String {
-                            formData.append(value.data(using: String.Encoding.utf8)!, withName: key)
+                            formData.append(value.data(using: String.Encoding.utf8).unsafelyUnwrapped, withName: key)
                         }
                     }
                 }
@@ -190,8 +187,8 @@ open class HTTPTransport {
         )
         uploadResult.responseHTTP(
             interceptors: request.responseInterceptors + responseInterceptors,
-            completionHandler: { respons in
-                result = self.composeResult(fromResponse: respons)
+            completionHandler: { response in
+                result = self.composeResult(fromResponse: response)
                 semaphore.signal()
             }
         )
@@ -213,13 +210,13 @@ open class HTTPTransport {
         callback: @escaping Callback
     ) -> HTTPCall<DataRequest> {
         let session = request.session ?? session
-        let alamofireSession: Alamofire.Session = session.manager
+        let alamofireSession = session.manager
         request.with(interceptors: requestInterceptors)
         let dataRequest = alamofireSession
             .request(request)
             .responseHTTP(
                 interceptors: request.responseInterceptors + responseInterceptors
-            ) { (response: ResultResponse) in
+            ) { response in
                 callback(self.composeResult(fromResponse: response))
             }
         if useDefaultValidation {
@@ -237,7 +234,7 @@ open class HTTPTransport {
         request: URLRequest,
         callback: @escaping Callback
     ) -> HTTPCall<DataRequest> {
-        let session: Alamofire.Session = self.session.manager
+        let session = session.manager
         let interceptedRequest = requestInterceptors.reduce(request) { (
             result: URLRequest,
             interceptor: HTTPRequestInterceptor
@@ -246,9 +243,7 @@ open class HTTPTransport {
         }
         let dataRequest = session
             .request(interceptedRequest)
-            .responseHTTP(
-                interceptors: responseInterceptors
-            ) { (response: ResultResponse) in
+            .responseHTTP(interceptors: responseInterceptors) { response in
                 callback(self.composeResult(fromResponse: response))
             }
         if useDefaultValidation {
@@ -268,10 +263,10 @@ open class HTTPTransport {
         callback: @escaping Callback
     ) {
         let session = request.session ?? session
-        let alamofireSession: Alamofire.Session = session.manager
+        let alamofireSession = session.manager
         request.with(interceptors: requestInterceptors)
         let uploadResult = alamofireSession.upload(
-            multipartFormData: { (formData: MultipartFormData) in
+            multipartFormData: { formData in
                 formData.append(
                     request.fileMultipart.fileData,
                     withName: request.fileMultipart.partName,
@@ -281,7 +276,7 @@ open class HTTPTransport {
                 request.parameters.forEach{
                     for (key, value) in $0.parameters {
                         if let value = value as? String {
-                            formData.append(value.data(using: String.Encoding.utf8)!, withName: key)
+                            formData.append(value.data(using: String.Encoding.utf8).unsafelyUnwrapped, withName: key)
                         }
                     }
                 }
@@ -303,16 +298,15 @@ open class HTTPTransport {
     /// - Parameter request: an HTTP request with HTTP verb, URL, headers, data etc.
     /// - Returns: either `.success` with HTTP response or `.failure` with error object
     public func send(request: DataUploadHTTPRequest) -> Result {
-        guard !Thread.isMainThread || allowNetworkingOnMainThread
-        else {
+        guard !Thread.isMainThread || allowNetworkingOnMainThread else {
             preconditionFailure("Networking on the main thread")
         }
         let session = request.session ?? session
-        let alamofireSession: Alamofire.Session = session.manager
+        let alamofireSession = session.manager
         var result = Result.timeout
         let semaphore = DispatchSemaphore(value: 0)
         request.with(interceptors: requestInterceptors)
-        var urlRequest: URLRequest!
+        var urlRequest: URLRequest
         do {
             urlRequest = try request.asURLRequest()
         } catch let error {
@@ -328,7 +322,7 @@ open class HTTPTransport {
             .upload(request.data, with: interceptedRequest)
             .responseHTTP(
                 interceptors: request.responseInterceptors + responseInterceptors
-            ) { (response: ResultResponse) in
+            ) { response in
                 result = self.composeResult(fromResponse: response)
                 semaphore.signal()
             }
@@ -347,7 +341,7 @@ open class HTTPTransport {
     ///   - callback: completion closure fired with a result of call
     /// - Returns: cancellable HTTPCall object, with observable progress
     public func send(data: Data, request: URLRequest, callback: @escaping Callback) -> HTTPCall<DataRequest> {
-        let alamofireSession: Alamofire.Session = self.session.manager
+        let alamofireSession = session.manager
         let interceptedRequest = requestInterceptors.reduce(request) { (
             result: URLRequest,
             interceptor: HTTPRequestInterceptor
@@ -356,9 +350,7 @@ open class HTTPTransport {
         }
         let uploadRequest = alamofireSession
             .upload(data, with: interceptedRequest)
-            .responseHTTP(
-                interceptors: responseInterceptors
-            ) { (response: ResultResponse) in
+            .responseHTTP(interceptors: responseInterceptors) { response in
                 callback(self.composeResult(fromResponse: response))
             }
         if useDefaultValidation {
@@ -423,9 +415,9 @@ private extension HTTPTransport {
     func composeResult(fromResponse response: ResultResponse) -> Result {
         switch response.result {
         case let .success(httpResponse):
-            return Result.success(response: httpResponse)
+            return .success(response: httpResponse)
         case let .failure(afError):
-            return Result.failure(error: afError.underlyingError as NSError? ?? afError as NSError)
+            return .failure(error: afError.underlyingError as NSError? ?? afError as NSError)
         }
     }
 }

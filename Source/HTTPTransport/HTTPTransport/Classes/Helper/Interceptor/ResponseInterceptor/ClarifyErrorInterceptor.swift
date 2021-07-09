@@ -37,7 +37,10 @@ open class ClarifyErrorInterceptor {
 // MARK: - HTTPResponseInterceptor
 
 extension ClarifyErrorInterceptor: HTTPResponseInterceptor {
-    
+
+    /// Intercept incoming HTTP response
+    /// - Parameter response: original response
+    /// - Returns: may return original or modified response
     open func intercept(response: RawResponse) -> RawResponse {
         guard
             let receivedError = response.error,

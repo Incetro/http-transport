@@ -799,3 +799,7 @@ dependency, and to erect an independent logic on top of the **URLSession** frame
 These far-reaching plans require significant efforts we cannot afford right now. Still, it is a major target we aspire to hit eventually.
 
 So, pull requests are welcome, but consider creating a tentative issue before the actual coding.
+
+## Appreciation
+
+Inspired by [RedMadRobot HTTPTransport](https://github.com/RedMadRobot/http-transport). We wanted to implement our vision of HTTPTransport and improve the framework in our own way.

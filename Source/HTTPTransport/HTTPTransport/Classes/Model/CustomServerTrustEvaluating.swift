@@ -22,7 +22,8 @@ public final class ClosureServerTrustEvaluating {
     }
 
     // MARK: - Properties
-    
+
+    /// Server trust checking closure
     let closure: ServerTrustCheckMethod
 
     // MARK: - Initializers

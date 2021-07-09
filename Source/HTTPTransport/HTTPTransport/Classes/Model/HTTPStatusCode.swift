@@ -412,22 +412,22 @@ public extension HTTPStatusCode {
     }
 
     /// Success - The action was successfully received, understood, and accepted.
-    var isSuccess:       Bool {
+    var isSuccess: Bool {
         isIn(range: 200...299)
     }
 
     /// Redirection - Further action must be taken in order to complete the request.
-    var isRedirection:   Bool {
+    var isRedirection: Bool {
         isIn(range: 300...399)
     }
 
     /// Client Error - The request contains bad syntax or cannot be fulfilled.
-    var isClientError:   Bool {
+    var isClientError: Bool {
         isIn(range: 400...499)
     }
 
     /// Server Error - The server failed to fulfill an apparently valid request.
-    var isServerError:   Bool {
+    var isServerError: Bool {
         isIn(range: 500...599)
     }
 

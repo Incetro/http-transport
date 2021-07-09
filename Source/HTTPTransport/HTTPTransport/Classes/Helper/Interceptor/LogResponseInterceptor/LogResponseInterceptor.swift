@@ -55,9 +55,50 @@ open class LogResponseInterceptor {
 
         // MARK: - Cases
 
+        /// Do not print anything
         case nothing = 0
+
+        /// Print status
+        ///
+        /// You will see in the log something like this:
+        /// ```
+        /// [RESPONSE] 200 - no error
+        /// From: https://website.com
+        /// ```
         case status = 1
+
+        /// Print status and headers
+        ///
+        /// You will see in the log something like this:
+        /// ```
+        /// [RESPONSE] 200 - no error
+        /// From: https://website.com
+        /// Headers:
+        /// Set-Cookie: session=ABCS
+        /// Content-Type: application/json
+        /// ```
         case headers = 2
+
+        /// Print everything
+        ///
+        /// You will see in the log something like this:
+        /// ```
+        /// [RESPONSE] 200 - no error
+        /// From: https://website.com
+        /// Headers:
+        /// Content-Type: application/json
+        /// Set-Cookie: session=ABCS
+        /// Body:
+        /// {
+        ///   "data" : [
+        ///     {
+        ///       "id" : 1,
+        ///       "message_subject" : "Subject 1",
+        ///       "body" : "Body 1"
+        ///     }
+        ///   ]
+        /// }
+        /// ```
         case everything = 3
     }
 
@@ -86,6 +127,9 @@ open class LogResponseInterceptor {
 
 extension LogResponseInterceptor: HTTPResponseInterceptor {
 
+    /// Intercept incoming HTTP response
+    /// - Parameter response: original response
+    /// - Returns: may return original or modified response
     open func intercept(response: RawResponse) -> RawResponse {
         guard
             logLevel.rawValue > LogLevel.nothing.rawValue,

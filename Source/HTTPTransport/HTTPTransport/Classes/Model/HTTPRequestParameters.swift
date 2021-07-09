@@ -35,6 +35,8 @@ open class HTTPRequestParameters {
         self.encoding = encoding
     }
 
+    // MARK: - Subscripts
+
     /// Operate over the parameters map
     public subscript(parameterName: String) -> Any? {
         get {
@@ -50,6 +52,8 @@ open class HTTPRequestParameters {
     /// Parameters encoding
     public enum Encoding {
 
+        // MARK: - Aliases
+
         /// Encode parameters into provided URLRequest
         public typealias EncodeFunction = (_ request: URLRequest, _ parameters: [String: Any]?) throws -> URLRequest
 
@@ -64,12 +68,17 @@ open class HTTPRequestParameters {
         /// Your custom format
         case custom(encode: EncodeFunction)
 
+        // MARK: - Useful
+
         /// Transform `Encoding` into `Alamofire.ParameterEncoding` instance
         func toAlamofire() -> ParameterEncoding {
             switch self {
-                case .url: return URLEncoding.default
-                case .json: return JSONEncoding.default
-                case .custom(let encodeFunction): return CustomEncoder(encodeFunction: encodeFunction)
+                case .url:
+                    return URLEncoding.default
+                case .json:
+                    return JSONEncoding.default
+                case .custom(let encodeFunction):
+                    return CustomEncoder(encodeFunction: encodeFunction)
             }
         }
     }

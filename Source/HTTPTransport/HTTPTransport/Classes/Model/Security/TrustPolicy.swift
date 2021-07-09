@@ -15,14 +15,13 @@ public typealias ServerTrustCheckMethod = (_ serverTrust: SecTrust, _ host: Stri
 // MARK: - Useful
 
 public func createServerTrustCheckMethod(certificateFingerprintSHA1: String) -> ServerTrustCheckMethod {
-    { (serverTrust: SecTrust, host: String) -> (Bool) in
+    { (serverTrust, host) -> (Bool) in
         if !checkDomainName(serverTrust, host: host) {
             return false
         }
         // "Fingerprint" check:
         let serverCertificate = SecTrustGetCertificateAtIndex(serverTrust, 0);
-        guard let certificate = serverCertificate
-        else {
+        guard let certificate = serverCertificate else {
             return false
         }
         let certificateSha1 = hexadecimalString(certificateSHA1(certificate))
@@ -37,8 +36,7 @@ public func createServerTrustCheckMethod(certificateFingerprintSHA256: String) -
         }
         // "Fingerprint" check:
         let serverCertificate = SecTrustGetCertificateAtIndex(serverTrust, 0);
-        guard let certificate = serverCertificate
-        else {
+        guard let certificate = serverCertificate else {
             return false
         }
         let certificateSha256 = hexadecimalString(certificateSHA256(certificate))
@@ -47,24 +45,17 @@ public func createServerTrustCheckMethod(certificateFingerprintSHA256: String) -
 }
 
 public func createServerTrustCheckMethod(certificatePublicKeyFingerprint: String) -> ServerTrustCheckMethod {
-    { (serverTrust: SecTrust, host: String) -> (Bool) in
+    { (serverTrust, host) -> (Bool) in
         if !checkDomainName(serverTrust, host: host) {
             return false
         }
         // Retrieve public key:
         let serverCertificatePublicKeyRef = SecTrustCopyPublicKey(serverTrust)
-        guard let serverCertificatePublicKey = serverCertificatePublicKeyRef
-        else {
+        guard let serverCertificatePublicKey = serverCertificatePublicKeyRef else {
             return false
         }
-        let publicKeyDataRef: Data?
-        if #available(iOS 10.0, *) {
-            publicKeyDataRef = SecKeyCopyExternalRepresentation(serverCertificatePublicKey, nil) as Data?
-        } else {
-            publicKeyDataRef = copyExternalRepresentation_legacy(serverCertificatePublicKey)
-        }
-        guard let publicKeyData = publicKeyDataRef
-        else {
+        let publicKeyDataRef = SecKeyCopyExternalRepresentation(serverCertificatePublicKey, nil) as Data?
+        guard let publicKeyData = publicKeyDataRef else {
             return false
         }
         let publicKeyDataString = hexadecimalString(publicKeyData)
@@ -73,19 +64,14 @@ public func createServerTrustCheckMethod(certificatePublicKeyFingerprint: String
 }
 
 public func createServerTrustDebugMethod() -> ServerTrustCheckMethod {
-    { (serverTrust: SecTrust, host: String) -> (Bool) in
+    { (serverTrust, host) -> (Bool) in
         let publicKeyDataString: String
         let certificateSha1: String
         let certificateSha256: String
         // Retrieve public key:
         let serverCertificatePublicKeyRef = SecTrustCopyPublicKey(serverTrust)
         if let serverCertificatePublicKey = serverCertificatePublicKeyRef {
-            let publicKeyDataRef: Data?
-            if #available(iOS 10.0, *) {
-                publicKeyDataRef = SecKeyCopyExternalRepresentation(serverCertificatePublicKey, nil) as Data?
-            } else {
-                publicKeyDataRef = copyExternalRepresentation_legacy(serverCertificatePublicKey)
-            }
+            let publicKeyDataRef = SecKeyCopyExternalRepresentation(serverCertificatePublicKey, nil) as Data?
             if let publicKeyData = publicKeyDataRef {
                 publicKeyDataString = hexadecimalString(publicKeyData)
             } else {
@@ -116,7 +102,7 @@ public func checkDomainName(_ serverTrust: SecTrust, host: String) -> Bool {
     let status = SecTrustEvaluate(serverTrust, &result)
     if status == errSecSuccess {
         let unspecified = SecTrustResultType.unspecified
-        let proceed     = SecTrustResultType.proceed
+        let proceed = SecTrustResultType.proceed
         isValid = result == unspecified || result == proceed
     }
     return isValid

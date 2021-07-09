@@ -13,17 +13,24 @@ public struct RawResponse {
 
     // MARK: - Properties
 
-    public let request:  URLRequest?
+    /// URL request
+    public let request: URLRequest?
+
+    /// http URL response
     public let response: HTTPURLResponse?
-    public let data:     Data?
-    public let error:    Error?
+
+    /// Response data
+    public let data: Data?
+
+    /// Response error
+    public let error: Error?
 
     /// Default initializer
     /// - Parameters:
-    ///   - request: url request
-    ///   - response: http url response
-    ///   - data: some data
-    ///   - error: some error
+    ///   - request: URL request
+    ///   - response: http URL response
+    ///   - data: response data
+    ///   - error: response error
     public init(
         request: URLRequest?,
         response: HTTPURLResponse?,

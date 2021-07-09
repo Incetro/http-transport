@@ -17,7 +17,8 @@ public final class CustomDataResponseSerializer<Value>: DataResponseSerializerPr
     public typealias SerializedObject = Value
 
     // MARK: - Properties
-    
+
+    /// Serialize response
     public var serializeResponse: (URLRequest?, HTTPURLResponse?, Data?, Error?) throws -> Value
 
     // MARK: - Initialazers
@@ -31,7 +32,15 @@ public final class CustomDataResponseSerializer<Value>: DataResponseSerializerPr
     }
 
     // MARK: - Useful
-    
+
+    /// Perform serialize
+    /// - Parameters:
+    ///   - request: URL request
+    ///   - response: http URL response
+    ///   - error: response error
+    ///   - data: response data
+    /// - Throws: Value instance
+    /// - Returns: serialize response
     public func serialize(
         request: URLRequest?,
         response: HTTPURLResponse?,

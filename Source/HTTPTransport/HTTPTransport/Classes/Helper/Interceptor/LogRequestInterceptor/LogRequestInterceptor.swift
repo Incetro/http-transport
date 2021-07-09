@@ -41,10 +41,56 @@ open class LogRequestInterceptor {
 
         // MARK: - Cases
 
+        /// Do not print anything
         case nothing = 0
+
+        /// Print url
+        ///
+        /// You will see in the log something like this:
+        /// ```
+        /// [REQUEST] GET https://website.com
+        /// ```
         case url = 1
+
+        /// Print url and curl
+        ///
+        /// You will see in the log something like this:
+        /// ```
+        /// [REQUEST] POST https://website.com
+        /// curl https://website.com \
+        ///    -X POST
+        /// ```
         case curl = 2
+
+        /// Print url, curl and headers
+        ///
+        /// You will see in the log something like this:
+        /// ```
+        /// [REQUEST] GET https://website.com
+        /// curl https://website.com
+        ///
+        /// Headers:
+        /// Cookie: default_token=abcdef;
+        /// ```
         case headers = 3
+
+        /// Print everything
+        ///
+        /// You will see in the log something like this:
+        /// ```
+        /// [REQUEST] PUT https://website.com
+        /// curl https://website.com \
+        ///    -X PUT
+        ///    -H 'Content-Type: application/json' \
+        ///    -H 'X-Client: iOS' \
+        ///    -H 'X-OS: -1' \
+        ///    -H 'X-Locale: en' \
+        ///    -H 'X-Build: 190' \
+        ///    -d '{"firstname":"Tom","lastname":"Ford","birth_date":15627600}
+        ///
+        /// Headers:
+        /// Cookie: default_token=abcdef;
+        /// ```
         case everything = 4
     }
 }
@@ -53,12 +99,15 @@ open class LogRequestInterceptor {
 
 extension LogRequestInterceptor: HTTPRequestInterceptor {
 
+    /// Intercept outgoing HTTP request
+    /// - Parameter request: original request
+    /// - Returns: may return original or modified `URLRequest`
     open func intercept(request: URLRequest) -> URLRequest {
         guard
             logLevel.rawValue > LogLevel.nothing.rawValue,
             let httpMethod = request.httpMethod,
             let url = request.url?.absoluteString,
-            let headers: [String: String] = request.allHTTPHeaderFields
+            let headers = request.allHTTPHeaderFields
         else {
             return request
         }

@@ -13,7 +13,10 @@ public extension HTTPCookie {
 
     // MARK: - Properties
 
+    /// Stub URL adress
     private static let stubURLAddress = "http://localhost"
+
+    /// Stub path
     private static let stubPath = "/"
 
     // MARK: - Initializers

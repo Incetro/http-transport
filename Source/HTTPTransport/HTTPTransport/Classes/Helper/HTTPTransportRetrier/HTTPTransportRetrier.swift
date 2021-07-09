@@ -20,7 +20,10 @@ open class HTTPTransportRetrier {
 
     // MARK: - Properties
 
-    private var isRefreshing    = false
+    /// True if need refrashing
+    private var isRefreshing = false
+
+    /// Request to retry
     private var requestsToRetry = [(RetryResult) -> Void]()
 
     /// HTTPTransportRetrierDelegate instance

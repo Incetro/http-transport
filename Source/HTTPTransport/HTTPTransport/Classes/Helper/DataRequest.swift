@@ -13,37 +13,36 @@ import Alamofire
 /// Alamofire monkey patch
 /// Allows intercepting HTTP responses & process response data.
 extension DataRequest {
-    
+
+    /// HTTP response serializer
+    /// - Parameter interceptors: array of interceptors
+    /// - Returns: custom serializer
     static func httpResponseSerializer(
         interceptors: [HTTPResponseInterceptor] = []
     ) -> CustomDataResponseSerializer<HTTPResponse> {
-        return CustomDataResponseSerializer { (
-            request: URLRequest?,
-            response: HTTPURLResponse?,
-            data: Data?,
-            error: Error?
+        CustomDataResponseSerializer { (
+            request,
+            response,
+            data,
+            error
         ) throws -> HTTPResponse in
-            // COMPOSE A SINGLE RAW RESPONSE OBJECT
             let rawResponse = RawResponse(
                 request: request,
                 response: response,
                 data: data,
                 error: error
             )
-            // REFINE RAW RESPONSE THROUGH INTERCEPTORS
             let refinedRawResponse = interceptors.reduce(rawResponse) { (
                 currentRawResponse: RawResponse,
                 interceptor: HTTPResponseInterceptor
             ) -> RawResponse in
-                return interceptor.intercept(response: currentRawResponse)
+                interceptor.intercept(response: currentRawResponse)
             }
             if let error = refinedRawResponse.error {
-                // GENERAL FAILURE
                 throw error
             }
             guard let response: HTTPURLResponse = refinedRawResponse.response
             else {
-                // NETWORK FAILURE
                 throw NSError.noHTTPResponse
             }
             let httpResponse: HTTPResponse = HTTPResponse(
@@ -56,6 +55,12 @@ extension DataRequest {
         }
     }
 
+    /// Response HTTP
+    /// - Parameters:
+    ///   - queue: current queue
+    ///   - interceptors: array of interceptors
+    ///   - completionHandler: completion handler
+    /// - Returns: DataRequest instance
     @discardableResult func responseHTTP(
         queue: DispatchQueue = .main,
         interceptors: [HTTPResponseInterceptor] = [],

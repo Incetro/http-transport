@@ -20,6 +20,7 @@ public class HTTPCall<Request: DataRequest> {
 
     // MARK: - Properties
 
+    /// Request
     fileprivate let request: Request
 
     // MARK: - Initializers

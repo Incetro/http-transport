@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.description  = "Based on Alamofire. Implements synchronous transport"
   s.homepage     = "https://github.com/Incetro/http-transport"
   s.license      = { :type => "MIT", :file => "LICENSE" }
-  s.author       = { "Jeorge Taflanidi" => "et@redmadrobot.com" }
+  s.author       = { "incetro" => "incetro@ya.ru", "Jeorge Taflanidi" => "et@redmadrobot.com", "Gasol" => "1ezya007@gmail.com" }
   s.platform     = :ios, "10.0"
   s.source       = { :git => "https://github.com/Incetro/http-transport.git", :tag => s.version, :branch => "master" }
   s.source_files = "Source/HTTPTransport/HTTPTransport/Classes/**/*"

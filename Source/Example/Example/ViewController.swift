@@ -114,13 +114,13 @@ class ViewController: UIViewController {
         )
         
         let call = transport.send(request: imageRequest) { (result: HTTPTransport.Result) in
-                switch result {
-                    case .success:
-                        print("SUCCESS")
-                    case .failure(let error):
-                        print(error.localizedDescription)
-                }
+            switch result {
+            case .success:
+                print("SUCCESS")
+            case .failure(let error):
+                print(error.localizedDescription)
             }
+        }
         
         call.onProgress { (progress: Progress) in
             if progress.fractionCompleted > 0.5 {

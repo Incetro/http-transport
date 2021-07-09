@@ -10,7 +10,11 @@ import CommonCrypto
 
 // MARK: - Aliases
 
-typealias AlgoClosure = (_ data: UnsafeRawPointer?, _ len: CC_LONG, _ md: UnsafeMutablePointer<UInt8>?) -> UnsafeMutablePointer<UInt8>?
+typealias AlgoClosure = (
+    _ data: UnsafeRawPointer?,
+    _ len: CC_LONG,
+    _ md: UnsafeMutablePointer<UInt8>?
+) -> UnsafeMutablePointer<UInt8>?
 
 // MARK: - Data
 
@@ -19,8 +23,13 @@ extension Data {
     // MARK: - CryptoAlgo
     
     enum CryptoAlgo {
+
+        // MARK: - Cases
+
         case sha1
         case sha256
+
+        // MARK: - Properties
         
         var length: Int32 {
             switch self {
@@ -36,18 +45,20 @@ extension Data {
             case .sha1:
                 return CC_SHA1
             case .sha256:
-            return CC_SHA256
+                return CC_SHA256
             }
         }
     }
+
+    // MARK: - Useful
     
     func algoWith(algoType: CryptoAlgo) -> Data {
         var digest = Data(count: Int(algoType.length))
         _ = digest.withUnsafeMutableBytes{ mutableBytes in
             withUnsafeBytes { messageBytes in
-                algoType.algo(messageBytes.baseAddress, CC_LONG(count), mutableBytes.bindMemory(to: UInt8.self).baseAddress);
+                algoType.algo(messageBytes.baseAddress, CC_LONG(count), mutableBytes.bindMemory(to: UInt8.self).baseAddress)
             }
         }
-        return digest;
+        return digest
     }
 }
