@@ -174,3 +174,10 @@ Pods
 # xccheckout ignoring 
 # ref. http://stackoverflow.com/questions/18340453/should-xccheckout-files-in-xcode5-be-ignored-under-vcs
 *.xccheckout
+
+# Carthage
+#
+# Add this line if you want to avoid checking in source code from Carthage dependencies.
+Carthage/Checkouts
+
+Carthage/Build/

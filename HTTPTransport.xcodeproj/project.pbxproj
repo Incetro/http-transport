@@ -3,13 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		3359B645266E90A6005C4B00 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3359B644266E90A6005C4B00 /* String.swift */; };
-		452560AB2A4C42F517F16081 /* Pods_HTTPTransport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DC3BCD88589DD335D8DCE65 /* Pods_HTTPTransport.framework */; };
-		510768141EA4E9480061FC4F /* incetro-http-transport.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 510768131EA4E9480061FC4F /* incetro-http-transport.podspec */; };
 		510768161EA4F26C0061FC4F /* HTTPCookie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510768151EA4F26C0061FC4F /* HTTPCookie.swift */; };
 		51593E3B1EA1023400E9A154 /* HTTPTransport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51593E311EA1023400E9A154 /* HTTPTransport.framework */; };
 		51593E551EA1029700E9A154 /* HTTPTransportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51593E521EA1029700E9A154 /* HTTPTransportTests.swift */; };
@@ -41,11 +39,13 @@
 		BAA5278B2040ABC2090AEFD5 /* ClarifyErrorInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA52316B9ABF0502EA8D5E3 /* ClarifyErrorInterceptor.swift */; };
 		BAA52BAC269BCDA57AEBB42F /* HTTPCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA524015BBBE04A8DDC1A94 /* HTTPCall.swift */; };
 		BAA52E5C95966700FD3FD3C4 /* MIMEType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA52583CC7418F6EDF69AE5 /* MIMEType.swift */; };
+		CB2CC77626B9963800965A17 /* Alamofire.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB2CC77226B9901100965A17 /* Alamofire.xcframework */; };
+		CB2CC77726B9963800965A17 /* Alamofire.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CB2CC77226B9901100965A17 /* Alamofire.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CB2CC77C26B9969C00965A17 /* incetro-http-transport.podspec in Resources */ = {isa = PBXBuildFile; fileRef = CB2CC77B26B9969C00965A17 /* incetro-http-transport.podspec */; };
 		DED9B40B2695BFA400CC83A1 /* CookieProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED9B40A2695BFA400CC83A1 /* CookieProviding.swift */; };
 		DED9B40E2695C14F00CC83A1 /* CookieStoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED9B40D2695C14F00CC83A1 /* CookieStoring.swift */; };
 		DED9B4102695C31E00CC83A1 /* RawResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED9B40F2695C31E00CC83A1 /* RawResponse.swift */; };
 		DED9B4182695C7AC00CC83A1 /* HTTPTransportRetrierDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED9B4172695C7AC00CC83A1 /* HTTPTransportRetrierDelegate.swift */; };
-		F0B7096016705E98D526B25C /* Pods_HTTPTransportTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB1D6C85F1A88C3181BE058F /* Pods_HTTPTransportTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,10 +58,21 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		CB2CC77826B9963800965A17 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CB2CC77726B9963800965A17 /* Alamofire.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		0DC3BCD88589DD335D8DCE65 /* Pods_HTTPTransport.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HTTPTransport.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		153CDB21A7A6CD611BD6978A /* Pods-HTTPTransportTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HTTPTransportTests.release.xcconfig"; path = "Target Support Files/Pods-HTTPTransportTests/Pods-HTTPTransportTests.release.xcconfig"; sourceTree = "<group>"; };
-		28DBB170B5561CE8A4449DEA /* Pods-HTTPTransportTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HTTPTransportTests.debug.xcconfig"; path = "Target Support Files/Pods-HTTPTransportTests/Pods-HTTPTransportTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3359B644266E90A6005C4B00 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		510768131EA4E9480061FC4F /* incetro-http-transport.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "incetro-http-transport.podspec"; path = "../../../../incetro-http-transport.podspec"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		510768151EA4F26C0061FC4F /* HTTPCookie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPCookie.swift; sourceTree = "<group>"; };
@@ -91,7 +102,6 @@
 		5E15085325361E0B005FB406 /* CustomServerTrustEvaluating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomServerTrustEvaluating.swift; sourceTree = "<group>"; };
 		5E15085425361E0B005FB406 /* CustomDataResponseSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDataResponseSerializer.swift; sourceTree = "<group>"; };
 		5EBB18F225399BEB00C79229 /* Data+Crypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Crypto.swift"; sourceTree = "<group>"; };
-		8E45167E88BCE0AB9C889922 /* Pods-HTTPTransport.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HTTPTransport.release.xcconfig"; path = "Target Support Files/Pods-HTTPTransport/Pods-HTTPTransport.release.xcconfig"; sourceTree = "<group>"; };
 		AA19EE971F67E5830066B2A4 /* DataUploadHTTPRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataUploadHTTPRequest.swift; sourceTree = "<group>"; };
 		BAA52316B9ABF0502EA8D5E3 /* ClarifyErrorInterceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClarifyErrorInterceptor.swift; sourceTree = "<group>"; };
 		BAA524015BBBE04A8DDC1A94 /* HTTPCall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPCall.swift; sourceTree = "<group>"; };
@@ -99,12 +109,13 @@
 		BAA52832426ECD13334ACAC1 /* AddCookieInterceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCookieInterceptor.swift; sourceTree = "<group>"; };
 		BAA52AA42BC3A92B8CC510E8 /* ReceivedCookieInterceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceivedCookieInterceptor.swift; sourceTree = "<group>"; };
 		BAA52F945A55184D494340C8 /* HTTPRequestParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPRequestParameters.swift; sourceTree = "<group>"; };
-		BB1D6C85F1A88C3181BE058F /* Pods_HTTPTransportTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HTTPTransportTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB2CC77226B9901100965A17 /* Alamofire.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Alamofire.xcframework; path = Carthage/Build/Alamofire.xcframework; sourceTree = "<group>"; };
+		CB2CC77926B9969400965A17 /* incetro-http-transport.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = "incetro-http-transport.podspec"; sourceTree = "<group>"; };
+		CB2CC77B26B9969C00965A17 /* incetro-http-transport.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = "incetro-http-transport.podspec"; sourceTree = "<group>"; };
 		DED9B40A2695BFA400CC83A1 /* CookieProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookieProviding.swift; sourceTree = "<group>"; };
 		DED9B40D2695C14F00CC83A1 /* CookieStoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookieStoring.swift; sourceTree = "<group>"; };
 		DED9B40F2695C31E00CC83A1 /* RawResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawResponse.swift; sourceTree = "<group>"; };
 		DED9B4172695C7AC00CC83A1 /* HTTPTransportRetrierDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPTransportRetrierDelegate.swift; sourceTree = "<group>"; };
-		F5B5DD06A142E77487BEBCA6 /* Pods-HTTPTransport.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HTTPTransport.debug.xcconfig"; path = "Target Support Files/Pods-HTTPTransport/Pods-HTTPTransport.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,7 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				452560AB2A4C42F517F16081 /* Pods_HTTPTransport.framework in Frameworks */,
+				CB2CC77626B9963800965A17 /* Alamofire.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,31 +132,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				51593E3B1EA1023400E9A154 /* HTTPTransport.framework in Frameworks */,
-				F0B7096016705E98D526B25C /* Pods_HTTPTransportTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0E629A1E7BA5C07E05AF4011 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				F5B5DD06A142E77487BEBCA6 /* Pods-HTTPTransport.debug.xcconfig */,
-				8E45167E88BCE0AB9C889922 /* Pods-HTTPTransport.release.xcconfig */,
-				28DBB170B5561CE8A4449DEA /* Pods-HTTPTransportTests.debug.xcconfig */,
-				153CDB21A7A6CD611BD6978A /* Pods-HTTPTransportTests.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		51593E271EA1023400E9A154 = {
 			isa = PBXGroup;
 			children = (
+				CB2CC77926B9969400965A17 /* incetro-http-transport.podspec */,
+				CB2CC77B26B9969C00965A17 /* incetro-http-transport.podspec */,
 				51593E331EA1023400E9A154 /* HTTPTransport */,
 				51593E3E1EA1023400E9A154 /* HTTPTransportTests */,
 				51593E321EA1023400E9A154 /* Products */,
-				0E629A1E7BA5C07E05AF4011 /* Pods */,
 				6BED4CD9B71A747617435595 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -291,8 +291,7 @@
 		6BED4CD9B71A747617435595 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0DC3BCD88589DD335D8DCE65 /* Pods_HTTPTransport.framework */,
-				BB1D6C85F1A88C3181BE058F /* Pods_HTTPTransportTests.framework */,
+				CB2CC77226B9901100965A17 /* Alamofire.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -358,11 +357,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 51593E451EA1023400E9A154 /* Build configuration list for PBXNativeTarget "HTTPTransport" */;
 			buildPhases = (
-				53CA7F454CD0E63E40347E37 /* [CP] Check Pods Manifest.lock */,
 				51593E2C1EA1023400E9A154 /* Sources */,
 				51593E2D1EA1023400E9A154 /* Frameworks */,
 				51593E2E1EA1023400E9A154 /* Headers */,
 				51593E2F1EA1023400E9A154 /* Resources */,
+				CB2CC77826B9963800965A17 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -377,11 +376,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 51593E481EA1023400E9A154 /* Build configuration list for PBXNativeTarget "HTTPTransportTests" */;
 			buildPhases = (
-				616C25193BB847AA7427C1E0 /* [CP] Check Pods Manifest.lock */,
 				51593E361EA1023400E9A154 /* Sources */,
 				51593E371EA1023400E9A154 /* Frameworks */,
 				51593E381EA1023400E9A154 /* Resources */,
-				888A96A629D3618A30DEBF57 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -400,7 +397,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = "RedMadRobot LLC";
 				TargetAttributes = {
 					51593E301EA1023400E9A154 = {
@@ -441,7 +438,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				510768141EA4E9480061FC4F /* incetro-http-transport.podspec in Resources */,
+				CB2CC77C26B9969C00965A17 /* incetro-http-transport.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,71 +450,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		53CA7F454CD0E63E40347E37 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-HTTPTransport-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		616C25193BB847AA7427C1E0 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-HTTPTransportTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		888A96A629D3618A30DEBF57 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HTTPTransportTests/Pods-HTTPTransportTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HTTPTransportTests/Pods-HTTPTransportTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		51593E2C1EA1023400E9A154 /* Sources */ = {
@@ -583,6 +515,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -593,6 +526,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -600,8 +534,10 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -627,7 +563,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -644,6 +580,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -654,6 +591,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -661,8 +599,10 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -682,10 +622,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -696,7 +637,6 @@
 		};
 		51593E461EA1023400E9A154 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F5B5DD06A142E77487BEBCA6 /* Pods-HTTPTransport.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -709,7 +649,11 @@
 				INFOPLIST_FILE = "HTTPTransport/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MODULEMAP_FILE = "";
 				MODULEMAP_PRIVATE_FILE = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.redmadrobot.HTTPTransport;
@@ -723,7 +667,6 @@
 		};
 		51593E471EA1023400E9A154 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8E45167E88BCE0AB9C889922 /* Pods-HTTPTransport.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -736,7 +679,11 @@
 				INFOPLIST_FILE = "HTTPTransport/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MODULEMAP_FILE = "";
 				MODULEMAP_PRIVATE_FILE = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.redmadrobot.HTTPTransport;
@@ -749,12 +696,15 @@
 		};
 		51593E491EA1023400E9A154 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 28DBB170B5561CE8A4449DEA /* Pods-HTTPTransportTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				DEVELOPMENT_TEAM = 42LRQS6X44;
 				INFOPLIST_FILE = "HTTPTransportTests/Supporting Files/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.redmadrobot.HTTPTransportTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -763,12 +713,15 @@
 		};
 		51593E4A1EA1023400E9A154 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 153CDB21A7A6CD611BD6978A /* Pods-HTTPTransportTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				DEVELOPMENT_TEAM = 42LRQS6X44;
 				INFOPLIST_FILE = "HTTPTransportTests/Supporting Files/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.redmadrobot.HTTPTransportTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
