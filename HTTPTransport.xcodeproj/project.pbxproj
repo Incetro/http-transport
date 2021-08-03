@@ -41,7 +41,6 @@
 		BAA52E5C95966700FD3FD3C4 /* MIMEType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA52583CC7418F6EDF69AE5 /* MIMEType.swift */; };
 		CB2CC77626B9963800965A17 /* Alamofire.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB2CC77226B9901100965A17 /* Alamofire.xcframework */; };
 		CB2CC77726B9963800965A17 /* Alamofire.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CB2CC77226B9901100965A17 /* Alamofire.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		CB2CC77C26B9969C00965A17 /* incetro-http-transport.podspec in Resources */ = {isa = PBXBuildFile; fileRef = CB2CC77B26B9969C00965A17 /* incetro-http-transport.podspec */; };
 		DED9B40B2695BFA400CC83A1 /* CookieProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED9B40A2695BFA400CC83A1 /* CookieProviding.swift */; };
 		DED9B40E2695C14F00CC83A1 /* CookieStoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED9B40D2695C14F00CC83A1 /* CookieStoring.swift */; };
 		DED9B4102695C31E00CC83A1 /* RawResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED9B40F2695C31E00CC83A1 /* RawResponse.swift */; };
@@ -110,8 +109,6 @@
 		BAA52AA42BC3A92B8CC510E8 /* ReceivedCookieInterceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceivedCookieInterceptor.swift; sourceTree = "<group>"; };
 		BAA52F945A55184D494340C8 /* HTTPRequestParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPRequestParameters.swift; sourceTree = "<group>"; };
 		CB2CC77226B9901100965A17 /* Alamofire.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Alamofire.xcframework; path = Carthage/Build/Alamofire.xcframework; sourceTree = "<group>"; };
-		CB2CC77926B9969400965A17 /* incetro-http-transport.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = "incetro-http-transport.podspec"; sourceTree = "<group>"; };
-		CB2CC77B26B9969C00965A17 /* incetro-http-transport.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = "incetro-http-transport.podspec"; sourceTree = "<group>"; };
 		DED9B40A2695BFA400CC83A1 /* CookieProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookieProviding.swift; sourceTree = "<group>"; };
 		DED9B40D2695C14F00CC83A1 /* CookieStoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookieStoring.swift; sourceTree = "<group>"; };
 		DED9B40F2695C31E00CC83A1 /* RawResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawResponse.swift; sourceTree = "<group>"; };
@@ -141,8 +138,6 @@
 		51593E271EA1023400E9A154 = {
 			isa = PBXGroup;
 			children = (
-				CB2CC77926B9969400965A17 /* incetro-http-transport.podspec */,
-				CB2CC77B26B9969C00965A17 /* incetro-http-transport.podspec */,
 				51593E331EA1023400E9A154 /* HTTPTransport */,
 				51593E3E1EA1023400E9A154 /* HTTPTransportTests */,
 				51593E321EA1023400E9A154 /* Products */,
@@ -438,7 +433,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB2CC77C26B9969C00965A17 /* incetro-http-transport.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
