@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name         = "incetro-http-transport"
   s.module_name  = "HTTPTransport"
-  s.version      = "5.2.3"
+  s.version      = "5.2.5"
   s.summary      = "HTTP transport library"
   s.description  = "Based on Alamofire. Implements synchronous transport"
   s.homepage     = "https://github.com/Incetro/http-transport.git"
