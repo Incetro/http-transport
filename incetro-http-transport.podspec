@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name         = "incetro-http-transport"
   s.module_name  = "HTTPTransport"
-  s.version      = "5.2.2"
+  s.version      = "5.2.3"
   s.summary      = "HTTP transport library"
   s.description  = "Based on Alamofire. Implements synchronous transport"
   s.homepage     = "https://github.com/Incetro/http-transport.git"
@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.author       = { "incetro" => "incetro@ya.ru", "Jeorge Taflanidi" => "et@redmadrobot.com", "Gasol" => "1ezya007@gmail.com" }
   s.platform     = :ios, "10.0"
   s.source       = { :git => "https://github.com/Incetro/http-transport.git", :tag => s.version, :branch => "main" }
-  s.source_files = "Source/HTTPTransport/HTTPTransport/Classes/**/*"
+  s.source_files = "HTTPTransport/HTTPTransport/Classes/**/*"
   s.requires_arc = true
   s.dependency "Alamofire", '~> 5'
 end
