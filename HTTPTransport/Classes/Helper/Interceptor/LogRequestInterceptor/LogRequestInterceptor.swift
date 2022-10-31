@@ -102,7 +102,7 @@ extension LogRequestInterceptor: HTTPRequestInterceptor {
     /// Intercept outgoing HTTP request
     /// - Parameter request: original request
     /// - Returns: may return original or modified `URLRequest`
-    open func intercept(request: URLRequest) -> URLRequest {
+    public func intercept(request: URLRequest) -> URLRequest {
         guard
             logLevel.rawValue > LogLevel.nothing.rawValue,
             let httpMethod = request.httpMethod,

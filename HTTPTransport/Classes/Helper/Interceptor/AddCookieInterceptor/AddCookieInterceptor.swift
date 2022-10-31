@@ -32,7 +32,7 @@ extension AddCookieInterceptor: HTTPRequestInterceptor {
     /// Intercept outgoing HTTP request
     /// - Parameter request: original request
     /// - Returns: may return original or modified `URLRequest`
-    open func intercept(request: URLRequest) -> URLRequest {
+    public func intercept(request: URLRequest) -> URLRequest {
         let cookies = getCookies(fromRequest: request)
         var mutableRequest = request
         var mutableHeaders = mutableRequest.allHTTPHeaderFields ?? [:]

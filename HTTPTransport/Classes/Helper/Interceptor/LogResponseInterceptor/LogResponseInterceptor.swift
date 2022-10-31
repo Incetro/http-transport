@@ -130,7 +130,7 @@ extension LogResponseInterceptor: HTTPResponseInterceptor {
     /// Intercept incoming HTTP response
     /// - Parameter response: original response
     /// - Returns: may return original or modified response
-    open func intercept(response: RawResponse) -> RawResponse {
+    public func intercept(response: RawResponse) -> RawResponse {
         guard
             logLevel.rawValue > LogLevel.nothing.rawValue,
             let statusCode = HTTPStatusCode(httpURLResponse: response.response)

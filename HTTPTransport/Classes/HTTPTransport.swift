@@ -259,9 +259,9 @@ open class HTTPTransport {
     ///   - callback: completion closure fired with a result of call
     open func send(
         request: FileUploadHTTPRequest,
-        multipartEncodingCallback: MultipartEncodingCallback? = nil,
+        uploadProgress: ((Progress) -> ())? = nil,
         callback: @escaping Callback
-    ) {
+    ) -> HTTPCall<UploadRequest> {
         let session = request.session ?? session
         let alamofireSession = session.manager
         request.with(interceptors: requestInterceptors)
@@ -283,6 +283,9 @@ open class HTTPTransport {
             },
             with: request
         )
+        uploadResult.uploadProgress { progress in
+            uploadProgress?(progress)
+        }
         uploadResult.responseHTTP(
             interceptors: request.responseInterceptors + responseInterceptors,
             completionHandler: { response in
@@ -292,6 +295,7 @@ open class HTTPTransport {
         if useDefaultValidation {
             uploadResult.validate()
         }
+        return HTTPCall(request: uploadResult)
     }
 
     /// Send an HTTP request with data

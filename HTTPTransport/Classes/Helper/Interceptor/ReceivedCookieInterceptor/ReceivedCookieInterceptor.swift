@@ -32,7 +32,7 @@ extension ReceivedCookieInterceptor: HTTPResponseInterceptor {
     /// Intercept incoming HTTP response
     /// - Parameter response: original response
     /// - Returns: may return original or modified response
-    open func intercept(response: RawResponse) -> RawResponse {
+    public func intercept(response: RawResponse) -> RawResponse {
         guard let cookies = getCookies(fromRawResponse: response) else { return response }
         cookieStorage.store(cookies: cookies)
         return response
