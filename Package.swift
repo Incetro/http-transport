@@ -4,14 +4,14 @@
 import PackageDescription
 
 let package = Package(
-    name: "http-transport-package",
+    name: "HTTPTransport",
     defaultLocalization: "en",
     platforms: [
         .iOS(.v11)
     ],
     products: [
         .library(
-            name: "http-transport-package",
+            name: "HTTPTransport",
             targets: ["HTTPTransport"]
         ),
     ],
