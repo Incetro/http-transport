@@ -6,6 +6,9 @@
 //  Copyright (c) 2021 RedMadRobot LLC & Incetro Inc. All rights reserved.
 //
 
+import Alamofire
+import Foundation
+
 // MARK: - ClarifyErrorInterceptor
 
 /// If error is received, try to fetch code and message from body data

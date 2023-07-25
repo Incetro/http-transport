@@ -6,6 +6,8 @@
 //  Copyright (c) 2021 RedMadRobot LLC & Incetro Inc. All rights reserved.
 //
 
+import Foundation
+
 // MARK: - LogRequestInterceptor
 
 /// Logs every HTTP request with selected level of details.

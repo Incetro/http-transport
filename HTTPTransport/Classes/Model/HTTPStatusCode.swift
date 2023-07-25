@@ -6,6 +6,8 @@
 //  Copyright (c) 2021 Richard Hodgkins & Incetro Inc. All rights reserved.
 //
 
+import Foundation
+
 // MARK: - HTTPStatusCode
 
 /// HTTP status codes as per the [IANA HTTP status code registry]

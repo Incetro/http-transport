@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.homepage     = "https://github.com/Incetro/http-transport.git"
   s.license      = { :type => "MIT", :file => "LICENSE" }
   s.author       = { "incetro" => "incetro@ya.ru", "Jeorge Taflanidi" => "et@redmadrobot.com", "Gasol" => "1ezya007@gmail.com" }
-  s.platform     = :ios, "10.0"
+  s.platform     = :ios, "11.0"
   s.source       = { :git => "https://github.com/Incetro/http-transport.git", :tag => s.version, :branch => "main" }
   s.source_files = "HTTPTransport/HTTPTransport/Classes/**/*"
   s.requires_arc = true

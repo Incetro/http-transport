@@ -7,6 +7,7 @@
 //
 
 import CommonCrypto
+import Foundation
 
 // MARK: - Aliases
 

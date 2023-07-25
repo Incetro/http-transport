@@ -6,6 +6,8 @@
 //  Copyright © 2021 RedMadRobot LLC & Incetro Inc. All rights reserved.
 //
 
+import Foundation
+
 // MARK: - HTTPResponse
 
 /// HTTP response with status code, response headers and body, if any

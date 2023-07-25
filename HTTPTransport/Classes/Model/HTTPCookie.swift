@@ -6,6 +6,8 @@
 //  Copyright © 2021 RedMadRobot LLC & Incetro Inc. All rights reserved.
 //
 
+import Foundation
+
 // MARK: - HTTPCookie
 
 /// Convenience initializer for Foundation HTTPCookie

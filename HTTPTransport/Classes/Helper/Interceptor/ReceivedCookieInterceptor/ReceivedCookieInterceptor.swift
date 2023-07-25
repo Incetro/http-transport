@@ -6,6 +6,8 @@
 //  Copyright (c) 2021 RedMadRobot LLC & Incetro Inc. All rights reserved.
 //
 
+import Foundation
+
 // MARK: - ReceivedCookieInterceptor
 
 /// Intercept HTTP Set-Cookie headers and store received cookies
