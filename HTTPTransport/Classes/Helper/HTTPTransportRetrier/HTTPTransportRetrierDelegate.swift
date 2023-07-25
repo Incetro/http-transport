@@ -6,6 +6,8 @@
 //  Copyright © 2021 RedMadRobot LLC & Incetro Inc. All rights reserved.
 //
 
+import Foundation
+
 // MARK: - HTTPTransportRetrierDelegate
 
 /// Responsibility to decide, whether the request should be retried or not, and when

@@ -6,6 +6,8 @@
 //  Copyright © 2021 RedMadRobot LLC & Incetro Inc. All rights reserved.
 //
 
+import Foundation
+
 // MARK: - FileMultipart
 
 /// File data and metadata struct, helps multipart file serialization

@@ -6,6 +6,8 @@
 //  Copyright © 2021 RedMadRobot LLC & Incetro Inc. All rights reserved.
 //
 
+import Foundation
+
 // MARK: - RawResponse
 
 /// Model for raw HTTP response with or without incoming error and data

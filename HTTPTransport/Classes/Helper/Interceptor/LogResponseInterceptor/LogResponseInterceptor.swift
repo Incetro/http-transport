@@ -6,6 +6,8 @@
 //  Copyright (c) 2021 RedMadRobot LLC & Incetro Inc. All rights reserved.
 //
 
+import Foundation
+
 // MARK: - LogResponseInterceptor
 
 /// Logs every transport response with selected level of details
