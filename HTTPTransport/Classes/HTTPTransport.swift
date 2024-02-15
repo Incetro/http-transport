@@ -125,6 +125,34 @@ open class HTTPTransport {
         _ = semaphore.wait(timeout: DispatchTime.now() + gap)
         return result
     }
+    
+    /// Send an HTTP request
+    /// - Parameter request: an HTTP request with HTTP verb, URL, headers, body etc.
+    /// - Returns: either `.success` with HTTP response or `.failure` with error object and responce
+    open func sendExtented(request: HTTPRequest) -> ExtendedResult {
+        guard !Thread.isMainThread || allowNetworkingOnMainThread else {
+            preconditionFailure("Networking on the main thread")
+        }
+        let session = request.session ?? session
+        let alamofireSession = session.manager
+        var result = ExtendedResult.timeout
+        let semaphore = DispatchSemaphore(value: 0)
+        request.with(interceptors: requestInterceptors)
+        let dataRequest = alamofireSession
+            .request(request)
+            .responseHTTP(
+                interceptors: request.responseInterceptors + responseInterceptors
+            ) { response in
+                result = self.composeExtendedResult(fromResponse: response)
+                semaphore.signal()
+            }
+        if useDefaultValidation {
+            dataRequest.validate()
+        }
+        let gap = request.timeout + semaphoreTimeoutGap
+        _ = semaphore.wait(timeout: DispatchTime.now() + gap)
+        return result
+    }
 
     /// Send an HTTP request
     /// - Parameter request: an `URLRequest` instance
@@ -380,6 +408,23 @@ open class HTTPTransport {
             Result.failure(error: NSError.timeout)
         }
     }
+    
+    // MARK: - ExtendedResult
+    
+    /// HTTP request rextended result
+    public enum ExtendedResult {
+        
+        // MARK: - Cases
+        
+        case success(response: HTTPResponse)
+        case failure(error: NSError, response: ResultResponse?)
+        
+        // MARK: - Properties
+        
+        public static var timeout: ExtendedResult {
+            ExtendedResult.failure(error: NSError.timeout, response: nil)
+        }
+    }
 
     // MARK: - MultipartEncodingResult
 
@@ -423,6 +468,15 @@ private extension HTTPTransport {
             return .success(response: httpResponse)
         case let .failure(afError):
             return .failure(error: afError.underlyingError as NSError? ?? afError as NSError)
+        }
+    }
+    
+    func composeExtendedResult(fromResponse response: ResultResponse) -> ExtendedResult {
+        switch response.result {
+        case let .success(httpResponse):
+            return .success(response: httpResponse)
+        case let .failure(afError):
+            return .failure(error: afError.underlyingError as NSError? ?? afError as NSError, response: response)
         }
     }
 }
