@@ -127,7 +127,7 @@ open class HTTPTransport {
     }
     
     @available(iOS 13.0, *)
-    open func sendAsync(request: HTTPRequest) async throws -> ExtendedResult {
+    open func send(request: HTTPRequest) async throws -> ExtendedResult {
         let session = request.session ?? session
         let alamofireSession = session.manager
         return try await withCheckedThrowingContinuation { continuation in
