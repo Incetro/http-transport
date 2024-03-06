@@ -126,6 +126,22 @@ open class HTTPTransport {
         return result
     }
     
+    @available(iOS 13.0, *)
+    open func sendAsync(request: HTTPRequest) async throws -> ExtendedResult {
+        let session = request.session ?? session
+        let alamofireSession = session.manager
+        return try await withCheckedThrowingContinuation { continuation in
+            Task {
+                request.with(interceptors: self.requestInterceptors)
+                let response = alamofireSession.request(request).responseHTTP(
+                    interceptors: request.responseInterceptors + self.responseInterceptors
+                ) { response in
+                    continuation.resume(returning: self.composeExtendedResult(fromResponse: response))
+                }
+            }
+        }
+    }
+    
     /// Send an HTTP request
     /// - Parameter request: an HTTP request with HTTP verb, URL, headers, body etc.
     /// - Returns: either `.success` with HTTP response or `.failure` with error object and responce
