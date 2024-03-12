@@ -51,7 +51,7 @@ open class HTTPRequestParameters {
     // MARK: - Encoding
 
     /// Parameters encoding
-    public enum Encoding {
+    public enum Encoding: Equatable {
 
         // MARK: - Aliases
 
@@ -80,6 +80,21 @@ open class HTTPRequestParameters {
                     return JSONEncoding.default
                 case .custom(let encodeFunction):
                     return CustomEncoder(encodeFunction: encodeFunction)
+            }
+        }
+        
+        // MARK: - Equatable
+        
+        public static func == (lhs: HTTPRequestParameters.Encoding, rhs: HTTPRequestParameters.Encoding) -> Bool {
+            switch (lhs, rhs) {
+            case (.url, .url):
+                return true
+            case (.json, .json):
+                return true
+            case (.custom(let lhsEncodeFunction), .custom(let rhsEncodeFunction)):
+                return String(describing: lhsEncodeFunction) == String(describing: rhsEncodeFunction)
+            default:
+                return false
             }
         }
     }
