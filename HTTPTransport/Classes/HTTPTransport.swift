@@ -412,7 +412,8 @@ private extension HTTPTransport {
         let alamofireSession = Alamofire.Session(
             startRequestsImmediately: true,
             interceptor: interceptor,
-            serverTrustManager: security.trustPolicyManager
+            serverTrustManager: security.trustPolicyManager,
+            redirectHandler: Redirector.doNotFollow
         )
         return Session(manager: alamofireSession)
     }
