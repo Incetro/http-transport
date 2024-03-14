@@ -118,6 +118,15 @@ open class HTTPTransport {
                 result = self.composeResult(fromResponse: response)
                 semaphore.signal()
             }
+            .redirect(using: Redirector(
+                behavior: .modify { sessionTask, urlRequest, httpURLResponse in
+                    var urlRequest = urlRequest
+                    request.headers.forEach { header in
+                        urlRequest.addValue(header.value, forHTTPHeaderField: header.key)
+                    }
+                    return urlRequest
+                }
+            ))
         if useDefaultValidation {
             dataRequest.validate()
         }
@@ -148,6 +157,15 @@ open class HTTPTransport {
                 result = self.composeResult(fromResponse: response)
                 semaphore.signal()
             }
+            .redirect(using: Redirector(
+                behavior: .modify { sessionTask, urlRequest, httpURLResponse in
+                    var urlRequest = urlRequest
+                    request.allHTTPHeaderFields?.forEach { header in
+                        urlRequest.addValue(header.value, forHTTPHeaderField: header.key)
+                    }
+                    return urlRequest
+                }
+            ))
         if useDefaultValidation {
             dataRequest.validate()
         }
@@ -220,6 +238,15 @@ open class HTTPTransport {
             ) { response in
                 callback(self.composeResult(fromResponse: response))
             }
+            .redirect(using: Redirector(
+                behavior: .modify { sessionTask, urlRequest, httpURLResponse in
+                    var urlRequest = urlRequest
+                    request.headers.forEach { header in
+                        urlRequest.addValue(header.value, forHTTPHeaderField: header.key)
+                    }
+                    return urlRequest
+                }
+            ))
         if useDefaultValidation {
             dataRequest.validate()
         }
@@ -247,6 +274,15 @@ open class HTTPTransport {
             .responseHTTP(interceptors: responseInterceptors) { response in
                 callback(self.composeResult(fromResponse: response))
             }
+            .redirect(using: Redirector(
+                behavior: .modify { sessionTask, urlRequest, httpURLResponse in
+                    var urlRequest = urlRequest
+                    request.allHTTPHeaderFields?.forEach { header in
+                        urlRequest.addValue(header.value, forHTTPHeaderField: header.key)
+                    }
+                    return urlRequest
+                }
+            ))
         if useDefaultValidation {
             dataRequest.validate()
         }
@@ -358,6 +394,15 @@ open class HTTPTransport {
             .responseHTTP(interceptors: responseInterceptors) { response in
                 callback(self.composeResult(fromResponse: response))
             }
+            .redirect(using: Redirector(
+                behavior: .modify { sessionTask, urlRequest, httpURLResponse in
+                    var urlRequest = urlRequest
+                    request.allHTTPHeaderFields?.forEach { header in
+                        urlRequest.addValue(header.value, forHTTPHeaderField: header.key)
+                    }
+                    return urlRequest
+                }
+            ))
         if useDefaultValidation {
             uploadRequest.validate()
         }
@@ -412,8 +457,7 @@ private extension HTTPTransport {
         let alamofireSession = Alamofire.Session(
             startRequestsImmediately: true,
             interceptor: interceptor,
-            serverTrustManager: security.trustPolicyManager,
-            redirectHandler: Redirector.doNotFollow
+            serverTrustManager: security.trustPolicyManager
         )
         return Session(manager: alamofireSession)
     }
