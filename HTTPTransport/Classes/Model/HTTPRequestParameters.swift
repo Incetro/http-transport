@@ -17,7 +17,7 @@ open class HTTPRequestParameters {
     // MARK: - Properties
 
     /// Parameters map
-    open var parameters: [String: Any]
+    open var parameters: [String: Any?]
 
     /// Parameters' encoding. Default is JSON
     public let encoding: Encoding
@@ -41,7 +41,7 @@ open class HTTPRequestParameters {
     /// Operate over the parameters map
     public subscript(parameterName: String) -> Any? {
         get {
-            return self.parameters[parameterName]
+            return self.parameters[parameterName] ?? nil
         }
         set(parameterValue) {
             self.parameters[parameterName] = parameterValue
