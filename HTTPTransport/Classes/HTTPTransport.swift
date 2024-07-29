@@ -133,10 +133,15 @@ open class HTTPTransport {
         return try await withCheckedThrowingContinuation { continuation in
             Task {
                 request.with(interceptors: self.requestInterceptors)
-                let response = alamofireSession.request(request).responseHTTP(
-                    interceptors: request.responseInterceptors + self.responseInterceptors
-                ) { response in
-                    continuation.resume(returning: self.composeExtendedResult(fromResponse: response))
+                let dataRequest = alamofireSession
+                    .request(request)
+                    .responseHTTP(
+                        interceptors: request.responseInterceptors + self.responseInterceptors
+                    ) { response in
+                        continuation.resume(returning: self.composeExtendedResult(fromResponse: response))
+                    }
+                if useDefaultValidation {
+                    dataRequest.validate()
                 }
             }
         }
